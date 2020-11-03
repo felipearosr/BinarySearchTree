@@ -125,9 +125,25 @@ class BinarySearchTree {
         return minval;
     }
 
+    static void printLevel(int level) {
+        printLevelRecursive(root, level);
+    }
+
+    static void printLevelRecursive(Node root, int level) {
+        if (root == null)
+            return;
+        if (level == 0)
+            System.out.print(root.key + " ");
+        else if (level > 0) {
+            printLevelRecursive(root.left, level - 1);
+            printLevelRecursive(root.right, level - 1);
+        }
+    }
+
     void levelO() {
         levelOrder(root);
     }
+
 
     public List<List<Integer>> levelOrder(Node root) {
         List<List<Integer>> res = new ArrayList<>();  
@@ -157,10 +173,20 @@ class BinarySearchTree {
         BinarySearchTree tree = new BinarySearchTree();
         for (int i = 0; i < n; i++)
             tree.insert(scanner.nextInt());
+        System.out.println();
         tree.preOrderTraversal();
+        System.out.println();
         tree.inOrderTraversal();
+        System.out.println();
         tree.postOrderTraversal();
-        System.out.println(levelO());
+        System.out.println();
+        tree.printLevel(0);
+        System.out.println();        
+        tree.printLevel(1);
+        System.out.println();
+        tree.printLevel(2);
+        System.out.println();
+        tree.printLevel(3);
         scanner.close();
     }
 }
